@@ -4,7 +4,7 @@ import { PageSizes, PDFDocument, degrees } from "pdf-lib";
 import EXIF from "exif-js";
 import { polyfill } from "mobile-drag-drop";
 import photoImg from "./image-regular.svg";
-
+// import SecondPage from "./Pages/SecondPage";
 // optional import of scroll behaviour
 import { scrollBehaviourDragImageTranslateOverride } from "mobile-drag-drop/scroll-behaviour";
 // import Navbar from "./Navbar";
@@ -84,12 +84,12 @@ class App extends React.Component {
         </div> */}
         <div className="flex justify-center">
           <img src={photoImg} className="w-16" alt="" />{" "}
-          <p className=" text-2xl font-bold py-4 ml-2">JPG to PDF</p>
+          <p className=" md:text-2xl font-bold py-4 ml-2">JPG to PDF</p>
         </div>
         <div className=" text-center text-lg font-light mb-6">
           The best web app to convert JPG to PDF
         </div>
-        <div className=" mx-40 flex justify-center pt-32 rounded-t-lg bg-yellow-400">
+        <div className=" md:mx-40 mx-6 flex justify-center md:pt-32 pt-16 rounded-t-lg bg-yellow-400">
           <button
             onClick={() => this.fileInput.current.click()}
             className="big-btn flex font-semibold bg-white px-3 py-2 rounded-lg"
@@ -98,7 +98,7 @@ class App extends React.Component {
           </button>
         </div>
         <div
-          className="dropzone mx-40 font-semibold text-white pt-4 bg-yellow-400 text-center rounded-b-lg pb-32"
+          className="dropzone md:mx-40 mx-6 font-semibold text-white pt-4 bg-yellow-400 text-center rounded-b-lg md:pb-32 pb-16"
           onDragStart={(e) => {}}
           onDrop={(e) => {
             if (e.stopPropagation) {
@@ -333,8 +333,12 @@ class App extends React.Component {
     );
 
     const options = (
-      <div className="options" style={optionStyle}>
+      <div
+        className=" mt-10 options mx-10 md:mr-40 md:ml-10"
+        style={optionStyle}
+      >
         <div
+          // className=" grid grid-cols-2 md:grid-cols-6"
           style={{
             paddingBottom: "10px",
             fontSize: "20px",
@@ -351,6 +355,7 @@ class App extends React.Component {
             fontSize: "16px",
             color: "gray",
             paddingTop: "10px",
+            display: "flex",
           }}
         >
           Page orientation
@@ -520,15 +525,15 @@ class App extends React.Component {
     );
     const actions = (
       <div
+        className=" mx-12 md:mx-40"
         style={{
           display: "flex",
-          justifyContent: "space-between",
+          // justifyContent: " space-around",
           padding: "10px",
           borderTop: "1px solid rgb(200,200,200)",
         }}
       >
-        <div style={{ display: "flex" }}>
-          <div style={{ paddingLeft: "5px", paddingRight: "5px" }}>
+        {/* <div style={{ paddingLeft: "5px", paddingRight: "5px" }}>
             <button
               onClick={() => {
                 this.setState({
@@ -539,15 +544,18 @@ class App extends React.Component {
             >
               PDF Options
             </button>
-          </div>
-          <button
-            onClick={() => this.fileInput.current.click()}
-            className="button btn "
-          >
-            Add another Photo
-          </button>
-        </div>
-        <button onClick={this.createPdf} className="button">
+          </div> */}
+        <button
+          onClick={() => this.fileInput.current.click()}
+          className=" button btn bg-yellow-400 px-4 py-2 text-white "
+        >
+          Add another Photo
+        </button>
+
+        <button
+          onClick={this.createPdf}
+          className=" button btn bg-yellow-400 px-4 py-2 text-white ml-28 md:ml-96"
+        >
           Generate PDF
         </button>
       </div>
@@ -595,20 +603,30 @@ class App extends React.Component {
         }}
       >
         {pageHeader}
-        <div style={{ display: "flex", overflow: "hidden", flex: "1" }}>
+        {landing}
+        <div
+          className="grid grid-cols-1 md:grid-cols-2"
+          // style={{
+          //   display: "flex",
+          //   flexWrap: "wrap",
+          //   overflow: "hidden",
+          //   flex: "1",
+          // }}
+        >
           <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              width: "100%",
-              flex: "1",
-              overflow: "auto",
-              background: "rgb(240,240,240)",
-            }}
+            className=" mx-2 mt-10 md:ml-40 md:mt-28 "
+            // style={{
+            //   display: "flex",
+            //   flexDirection: "column",
+            //   width: "100%",
+            //   flex: "1",
+            //   overflow: "auto",
+            //   background: "rgb(240,240,240)",
+            // }}
             onClick={this.clearSelection}
           >
             {listView}
-            <div style={{ flex: "1" }}></div>
+            {/* <div style={{ flex: "1" }}></div> */}
           </div>
           {options}
         </div>
@@ -621,52 +639,12 @@ class App extends React.Component {
           multiple
           style={{ display: "none" }}
         />
-        <div className="busy" style={busy}>
+        {/* <div className="busy" style={busy}>
           Generating PDF, Please wait...
-        </div>
+        </div> */}
       </div>
     );
-
-    // return (
-    //   <div>
-    //     <div>This app is not styled yet</div>
-    //     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-    //       {this.state.images.map((img, index) => (
-    //         <div style={{ display: 'flex', flexDirection: 'column' }}>
-    //           <img src={img.imgDataUrl} alt="" style={{ width: "96px", height: "128px" }}></img>
-    //           <div>{"Page " + (index + 1)}</div>
-    //         </div>
-    //       ))}
-    //     </div>
-    //     <div>
-    //       <input type="file" ref={this.fileInput} onChange={this.readfiles} multiple></input>
-    //       <button onClick={() => { this.setState({ images: [] }) }}>Clear</button>
-    //       <button onClick={this.createPdf}>Generate PDF</button>
-    //     </div>
-    //     {this.state.lastError ?
-    //       <div>
-    //         <div>{this.state.lastError}</div>
-    //         <div>{this.state.lastMime}</div>
-    //       </div> : <div>{this.state.lastMime}</div>}
-    //     <div>{this.state.lastMime}</div>
-    //   </div>);
   }
-
-  //https://labs.madisoft.it/javascript-image-compression-and-resizing/
-  /* resizeImage = async (file, width, height) => {
-    const blobURL = window.URL.createObjectURL(file);
-    const img = new Image();
-    img.src = blobURL;
-    img.onload = function (ev) {
-      window.URL.revokeObjectURL(blobURL); // release memory
-      // Use the img
-      const canvas = document.createElement('canvas');
-      canvas.width = width;
-      canvas.height = height;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0, width, height);
-    };
-  } */
 
   clearSelection = () => {
     let imgArr = [...this.state.images];
@@ -736,23 +714,6 @@ class App extends React.Component {
     });
   }
 
-  // scaleImage = async (pageWidth, pageHeight, pageMargin, dataURL) => {
-  //   let img = await this.loadImage(dataURL);
-
-  //   let scaleFactor = Math.min((pageWidth - pageMargin) / img.width, (pageHeight - pageMargin) / img.height);
-  //   let w = img.width * scaleFactor;
-  //   let h = img.height * scaleFactor;
-
-  //   let canvas = document.createElement('canvas');
-  //   let ctx = canvas.getContext('2d');
-  //   canvas.width = w;
-  //   canvas.height = h;
-  //   ctx.drawImage(img, 0, 0, w, h);
-  //   let blob = await this.canvasToBlob(canvas);
-  //   console.log(blob);
-  //   return await blob.arrayBuffer();
-  // }
-
   fetchImage = async (dataURL, quality) => {
     if (!quality) {
       let res = await fetch(dataURL);
@@ -784,23 +745,6 @@ class App extends React.Component {
       const pdfDoc = await PDFDocument.create();
       for (let i = 0; i < this.state.images.length; i++) {
         let pageSize = this.getPageSize();
-
-        // if (this.state.pageSize !== Fit) {
-        //   const page = pdfDoc.addPage(pageSize);
-        //   const dim = await pdfDoc.embedPng(await this.scaleImage(page.getWidth(), page.getHeight(), this.state.pageMargin, this.state.images[i].imgDataUrl));
-        //   page.drawImage(dim, {
-        //     x: page.getWidth() / 2 - dim.width / 2,
-        //     y: page.getHeight() / 2 - dim.height / 2,
-        //     width: dim.width,
-        //     height: dim.height,
-        //   });
-
-        //   continue;
-        // }
-
-        // let loadedImage=await loadImage(this.state.images[i].imgDataUrl,{meta:true});
-        // console.log("loaded image "+loadedImage);
-        // console.log(loadedImage);
 
         let res = await this.fetchImage(
           this.state.images[i].imgDataUrl,
@@ -966,66 +910,6 @@ class App extends React.Component {
     let pageSize = this.getPageSize();
     return pageSize[0] / pageSize[1];
   };
-
-  // getPreviewImageSize = (pageWidth, pageHeight, imageWidth, imageHeight) => {
-  //   let pageSize = this.getPageSize();
-  //   let margin = this.state.pageMargin * pageHeight / pageSize[1];
-  //   let scaleFactor = Math.min((pageWidth - margin) / img.width, (pageHeight - margin) / img.height);
-  //   let w = imageWidth * scaleFactor;
-  //   let h = imageHeight * scaleFactor;
-  //   return [w, h];
-  // }
-
-  // getPreviewPageSize = () => {
-  //   return {
-  //     height: 192,
-  //     width: 192 * this.getAspectRatio()
-  //   };
-  // }
-
-  // getMaxImageSize=()=>{
-  //   let maxWidth = -1;
-  //   let maxHeight = -1;
-  //   this.state.images.forEach(image => {
-  //     if (image.width > maxWidth) maxWidth = image.width;
-  //     if (image.height > maxWidth) maxHeight = image.height;
-  //   });
-  //   return {
-  //     width: maxWidth,
-  //     height: maxHeight
-  //   };
-  // }
-
-  /* createPdf = async () => {
-    const pdfDoc = await PDFDocument.create();
-    this.createPage(pdfDoc, 1);
-  }
-  createPage = (pdfDoc, index) => {
-    this.embedImage(pdfDoc, index).then(() => {
-      if (index > this.state.images.length) {
-        pdfDoc.save().then((blob) => {
-          var link = document.createElement('a');
-          link.href = window.URL.createObjectURL(blob);
-          var fileName = "file.pdf";
-          link.download = fileName;
-          link.click();
-        });
-      }
-      this.createPage(pdfDoc, index + 1);
-    });
-  }
-  embedImage = async (pdfDoc, index) => {
-    if (index > this.state.images.length) return;
-    let raw = await (await fetch(this.state.images[index - 1])).blob();
-    const img = await pdfDoc.embedJpg(raw);
-    const page = pdfDoc.addPage();
-    page.drawImage(img, {
-      x: 0,
-      y: 0,
-      width: page.getWidth(),
-      height: page.getHeight(),
-    });
-  } */
 
   uuidv4() {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
