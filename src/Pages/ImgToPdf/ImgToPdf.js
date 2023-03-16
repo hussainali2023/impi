@@ -4,6 +4,7 @@ import { PageSizes, PDFDocument, degrees } from "pdf-lib";
 import EXIF from "exif-js";
 import { polyfill } from "mobile-drag-drop";
 import photoImg from "../../image-regular.svg";
+import impiLogo from "../../assests/impi.png";
 // import SecondPage from "./Pages/SecondPage";
 // optional import of scroll behaviour
 import { scrollBehaviourDragImageTranslateOverride } from "mobile-drag-drop/scroll-behaviour";
@@ -563,18 +564,26 @@ class ImgToPdf extends React.Component {
     );
 
     const pageHeader = (
-      <div className="page-header bg-slate-100 flex pt-4 pb-4">
-        <p className=" text-3xl font-bold ml-4">IMPI</p>
-        <span className=" mx-auto text-2xl font-semibold" style={{}}>
+      <div className="page-header flex pt-4 pb-4 ml-10">
+        {/* <p className=" text-3xl font-bold ml-4">
+          IM<span className=" text-orange-500">PI</span>
+        </p> */}
+        {/* <div>
+          <img src={impiLogo} className=" w-8 md:w-10 h-8 md:h-10" alt="" />
+          <p className=" text-xl text-center font-extrabold">
+            IM<span className=" text-orange-500">PI</span>
+          </p>
+        </div> */}
+        {/* <span className=" mx-auto text-2xl font-semibold" style={{}}>
           CONVERT IMAGE TO PDF
-        </span>
+        </span> */}
       </div>
     );
 
     if (this.state.images.length < 1) {
       return (
         <div>
-          {pageHeader}
+          {/* {pageHeader} */}
           <input
             type="file"
             ref={this.fileInput}

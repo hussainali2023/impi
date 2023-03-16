@@ -5,16 +5,18 @@ import PdfToImage from "./Pages/PdfToImg";
 import SecPage from "./Pages/SecPage/SecPage";
 import ThirPage from "./ThirPage/ThirPage";
 import Footer from "./Pages/Footer/Footer";
+import FirstPage from "./FirstPage/FirstPage";
 // import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 const App = () => {
   return (
     <div>
+      <FirstPage />
       <ImgToPdf />
       <SecPage />
       <div className=" mt-20">
         <ThirPage />
-        <DocToPdf />
+        {/* <DocToPdf /> */}
         {/* <PdfToImage /> */}
       </div>
       <Footer />

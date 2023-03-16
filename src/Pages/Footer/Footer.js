@@ -9,8 +9,8 @@ import Bottom from "./Bottom";
 const Footer = () => {
   return (
     <div>
-      <NewsLetter />
-      <div className=" px-2 md:px-16 grid grid-cols-2 md:grid-cols-4">
+      {/* <NewsLetter /> */}
+      <div className=" px-2 md:px-16 grid grid-cols-2 md:grid-cols-4 bg-slate-100">
         <LogoAndMap />
         <UsefulLinks />
         <MyAccount />

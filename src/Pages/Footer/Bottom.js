@@ -6,10 +6,20 @@ import payments from "../../assests/footer-icons-2.webp";
 
 const Bottom = () => {
   return (
-    <div className=" mt-6 grid grid-cols-1 md:grid-cols-2 py-2 bg-black text-white ">
+    <div className=" py-2 bg-black text-white ">
       <div className=" pl-2 md:pl-16 grid grid-cols-1 md:grid-cols-2 items-center">
         <div className=" flex ">
-          <p>Copyright © 2023 IMPI | All rights reserved.</p>
+          <p>Copyright © 2023 IMPI | All rights reserved | </p>
+          <p className=" mr-2">
+            &nbsp;Developed By-----{" "}
+            <a
+              className=" text-blue-600"
+              href="https://portfolio-hussain.web.app"
+              target="_blank"
+            >
+              Hussain
+            </a>
+          </p>
         </div>
         <div>
           <p className=" flex">
@@ -18,12 +28,10 @@ const Bottom = () => {
             {/* </Link> */}
             {/* <Link to={"/"}> */}
             <img src={facebook} alt="" className=" h-10 w-12" />
+
             {/* </Link> */}
           </p>
         </div>
-      </div>
-      <div>
-        <img src={payments} alt="" className=" h-16" />
       </div>
     </div>
   );

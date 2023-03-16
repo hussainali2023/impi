@@ -13,11 +13,11 @@ const ThirPage = () => {
   }, []);
 
   return (
-    <div className=" bg-slate-100 py-16 md:px-40 grid md:grid-cols-2 grid-cols-1">
+    <div className=" bg-slate-100 py-16 md:px-36 md:flex md:flex-nowrap flex-wrap">
       <div
         data-aos="fade-right"
         data-aos-duration="1000"
-        className=" flex bg-white py-6 p-2 md:p-10 rounded-l-lg"
+        className=" flex bg-white py-6 md:px-10 rounded-l-lg"
       >
         <div className="mr-4">
           <FontAwesomeIcon
